@@ -14,7 +14,7 @@ public:
 	};
 
 	Student(int, char*, char*); // 생성자를 선언 constructor
-	Student Add(Student);
+	void Add(Student, Student);
 	~Student() {
 		delete[]name;
 	}
@@ -30,11 +30,10 @@ public:
 	} */
 };
 
-Student Student::Add(Student s2) {
+void Student::Add(Student s2, Student s3) {
 	// s3 = s1 + s2
 	Student s3;
 	s3.sno = this->sno + s2.sno;
-	return s3;
 }
 
 void Student::Show() {
@@ -58,10 +57,11 @@ int main() {
 	{
 		// char p[] = "hong"
 		// Student s1(11, p, p);
-		Student s1(11, "hong", "컴퓨터"); // 문자열을 name에 넘겨주는 것이 아니라 "hong"의 주소를 전달한다. 객체 끝나면 sno 사라짐.
-		Student s2(11, "hong", "컴퓨터");
+		Student *s1(11, "hong", "컴퓨터"); // 문자열을 name에 넘겨주는 것이 아니라 "hong"의 주소를 전달한다. 객체 끝나면 sno 사라짐.
+		Student *s2(11, "hong", "컴퓨터");
+		Student *s3(11, "hong", "컴퓨터");
 		s1.Show();
-		Student s3 = s1.Add(s2);
+		Student s3 = s1->Add(s2, s3);
 	}
 	system("pause");
 	return 1;
